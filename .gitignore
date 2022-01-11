@@ -15,6 +15,7 @@ $RECYCLE.BIN/
 
 *.log
 log.txt
+package-lock.json
 npm-debug.log*
 
 /.idea
