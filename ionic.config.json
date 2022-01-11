@@ -1,0 +1,7 @@
+{
+  "name": "ionic6-jistus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

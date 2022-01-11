@@ -1,0 +1,25 @@
+
+<ion-content [fullscreen]="true">
+  <!-- <div class="viewfinder" style="width: 100vw; height: 100px"></div> -->
+  <ion-button
+    *ngIf="!isBroadcasting"
+    [disabled]="!broadcaster || isPending"
+    (click)="start()">
+    Start
+  </ion-button>
+
+  <ion-button
+    *ngIf="isBroadcasting"
+    [disabled]="isPending"
+    (click)="stop()"
+    color="danger">
+    Stop
+  </ion-button>
+
+  <ion-button
+    *ngIf="broadcaster"
+    [disabled]="isPending"
+    (click)="switchCamera()">
+    <ion-icon name="camera-reverse"></ion-icon>
+  </ion-button>
+</ion-content>
