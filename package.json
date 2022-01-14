@@ -28,9 +28,13 @@
     "@ionic/angular": "^6.0.0",
     "capacitor-jitsi-meet": "^2.1.1",
     "connectycube": "^3.14.0",
+    "cordova-custom-config": "^5.1.1",
     "cordova-plugin-bambuser": "^0.9.13",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-iosrtc": "^8.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "webrtc-adapter": "^8.1.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

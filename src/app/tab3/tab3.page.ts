@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import adapter from 'webrtc-adapter';
+window['adapter'] = adapter;
 declare let window: any, ConnectyCube: any;
 
 let CREDENTIALS = {
@@ -19,9 +21,7 @@ let params = {
   name: "My meeting",
   start_date: new Date(Date.now()),
   end_date: new Date(Date.now()),
-  attendees: [
-    {id: 123, email: "kaoschuks@hotmail.com"}
-  ],
+  attendees: [],
   record: false,
   chat: false
 };
@@ -33,37 +33,60 @@ let params = {
 })
 export class Tab3Page {
 
+  sessions: any;
   constructor() {
-    // ConnectyCube = window.ConnectyCube
-    console.log(ConnectyCube)
-    let obj = Object.create(ConnectyCube['ConnectyCube']);
-    console.log(obj)
-    if(ConnectyCube) {
-      ConnectyCube['ConnectyCube'].createSession()
-      .then((session) => {
-        console.log(session);
-        // Cr
-        // ConnectyCube.init(CREDENTIALS, appConfig);
+    ConnectyCube.init(CREDENTIALS, appConfig);
+    const userProfile = {
+      login: "kelubboy",
+      password: "kelubboy2022#"
+    };
+    
+    ConnectyCube.createSession().then((session: any) => {
+        this.sessions = session;
+        localStorage.setItem("ConnectyCube:session", JSON.stringify(session));
+        ConnectyCube.setSession(session);
+        ConnectyCube.login(userProfile)
+          .then((user) => {
+            console.log(user)
+          })
+          .catch((error) => {});
       })
-      .catch((error) => {});
-    }
+      .catch((error) => {
+      });
   }
 
   start() {
-    ConnectyCube.meeting.create(params)
-    .then(meeting => {
-      const confRoomId = meeting._id;
-      const session = ConnectyCube.videochatconference.createNewSession();
-      const mediaParams = {
-        audio: true,
-        video: true,
-      };
-      
-      session.getUserMedia(mediaParams)
-        .then((localStream) => {})
-        .catch((error) => {});
-    })
-    .catch(error => { });
+    try {
+      ConnectyCube.meeting.create(params)
+      .then((meeting: any) => {
+        const confRoomId = meeting._id;
+        const session: any = ConnectyCube.videochatconference.createNewSession();
+        console.log(session)
+        const mediaParams = {
+          audio: true,
+          video: { width: 1280, height: 720 }
+        };
+        
+        session.getUserMedia(mediaParams)
+          .then((localStream) => {
+            console.log(session)
+            console.log(meeting);
+            console.log(localStream);
+            session.attachMediaStream("videostream", localStream, {
+              muted: true,
+              mirror: true,
+            });
+          })
+          .catch((error) => {
+            throw new Error(error)
+          });
+      })
+      .catch(error => {
+        throw new Error(error)
+      });
+    }catch(ex) {
+      console.log(ex)
+    } 
   }
 
 }
