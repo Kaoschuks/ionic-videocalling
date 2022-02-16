@@ -31,8 +31,13 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": ["./node_modules/connectycube/dist/connectycube.min.js"],
+            "styles": [
+              "src/theme/variables.scss", "src/global.scss"
+            ],
+            "scripts": [
+              "./node_modules/connectycube/dist/connectycube.min.js",
+              "src/assets/agora-uikit.js"
+            ],
             "aot": false,
             "vendorChunk": true,
             "extractLicenses": false,

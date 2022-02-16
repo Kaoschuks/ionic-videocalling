@@ -1,10 +1,12 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'ionic6-jistus',
+  appId: 'io.kaosdesign.videocalling',
+  appName: 'ionic6-Videocalling',
   webDir: 'www',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  cordova: {
+  }
 };
 
 export default config;

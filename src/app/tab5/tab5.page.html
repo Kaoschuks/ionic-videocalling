@@ -1,0 +1,12 @@
+
+<ion-content [fullscreen]="true">
+  <video id="stream_video" autoPlay muted="muted" playsInline></video>
+  <video id="user_video" autoPlay muted="muted" playsInline></video>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="start_stream()">Start Stream</ion-button>
+  <ion-button color="danger" (click)="stop_stream()">Stop Stream</ion-button>
+  <ion-input type="url" [(ngModel)]="url"></ion-input>
+  <ion-button expand="block" color="success" (click)="view_stream()">View Stream</ion-button>
+</ion-footer>
